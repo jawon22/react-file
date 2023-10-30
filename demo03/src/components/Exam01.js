@@ -23,7 +23,7 @@ function Exam01(){
             {/* 데이터를 출력 */}
             <h2>number = {number}</h2>
             {/* class를 부여할 때는 class가 아니라 className이라고 적어야 함 */}
-            <button className="btn btn-info" onClick={plus} oncl>+</button>
+            <button className="btn btn-info" onClick={plus}>+</button>
             <button className="btn btn-info ms-2" onClick={minus}>-</button>
         </>
     );
