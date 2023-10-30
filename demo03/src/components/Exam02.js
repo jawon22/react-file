@@ -21,9 +21,9 @@ function Exam02(){
         <>
             <h1>두 번째 예제</h1>
             {/* 애로우function으로 쓴다 / 람다를 쓴 예제 */}
-            <button onClick={()=>setSize(50)}>작게</button>
-            <button onClick={()=>setSize(200)}>기본</button>
-            <button onClick={()=>setSize(400)}>크게</button><br/>
+            <button className='btn btn-primary' onClick={()=>setSize(50)}>작게</button>
+            <button className='btn btn-primary' onClick={()=>setSize(200)}>기본</button>
+            <button className='btn btn-primary' onClick={()=>setSize(400)}>크게</button><br/>
             <img src={sadimage} width={size} height={size}/>
         </>
     );
