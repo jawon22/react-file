@@ -1,4 +1,4 @@
-import {useState} from "react"; //react 모듈 중에서 useState만 골라서 불러오겠다
+import React, {useState} from "react"; //react 모듈 중에서 useState만 골라서 불러오겠다
 
 function Exam01(){
     //데이터
