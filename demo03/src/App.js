@@ -7,6 +7,7 @@ import Exam04_1 from './components/Exam04_1';
 import Exam05 from './components/Exam05';
 import Exam05_1 from './components/Exam05_1';
 import Exam06 from './components/Exam06';
+import Exam07 from './components/Exam07';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
       <Exam05_1/>
       <hr/>
       <Exam06/>
+      <hr/>
+      <Exam07/>
     </>
   );
 }
