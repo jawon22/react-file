@@ -12,7 +12,7 @@ const Exam04 = ()=>{
     };
     const isMax = text.length >=1000;
     return(
-        <>
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-md-10 offset-md-1">
 
@@ -31,14 +31,14 @@ const Exam04 = ()=>{
 
                             <div className="text-end">
                                 <span style={{ color: isMax ? 'red' : 'black' }}>
-                                    {text.length}</span>/ 1000bytes  
+                                    {text.length}</span>/ 1000  
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
