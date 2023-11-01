@@ -8,6 +8,7 @@ import Exam05 from './components/Exam05';
 import Exam05_1 from './components/Exam05_1';
 import Exam06 from './components/Exam06';
 import Exam07 from './components/Exam07';
+import Exam08 from './components/Exam08';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
       <Exam06/>
       <hr/>
       <Exam07/>
+      <hr/>
+      <Exam08/>
+      <div className="my-5 py-5"></div>
     </>
   );
 }
