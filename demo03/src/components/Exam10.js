@@ -28,7 +28,7 @@ const Exam10 = ()=>{
                     </div>
 
                 
-                    <table class="table table-hover text-center">
+                    <table className="table table-hover text-center">
                         <thead>
                             <tr>
                                 <th className="col-2">번호</th>

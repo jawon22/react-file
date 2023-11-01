@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {Modal} from "bootstrap/dist/js/bootstrap.esm";
 
 const Exam10_1 = ()=>{
     const [items, setItems] = useState([
@@ -144,18 +145,49 @@ const Exam10_1 = ()=>{
     //- data는 깨긋하게 정리
     const addItem = ()=>{
         // const newItems = items.concat({...data}); //아래와 같은의미 코드
+        const itemNo = items.length == 0 ? 1: items[items.length-1].itemNo+1
+
+        //아이템 추가
         const newItems = [...items,
             {
                 ...data,
-                itemNo:items[items.length-1].itemNo+1
+                edit:false,
+                itemNo:itemNo
             }];
         setItems(newItems);
+
+        //백업 추가
+        const newBackup = [
+            ...backup,
+            {
+                ...data,
+                edit:false,
+                itemNo:itemNo
+            }
+        ]
+        setBackup(newBackup);
+
         setData({
             itemName:"",
             itemPrice:"",
             itemType:"",
         });
+
+        //모달 닫기
+        closeModal();
     };
+
+    //모달 여는 함수
+    const openModal = ()=>{
+        var modal = new Modal(document.querySelector("#exampleModal"));
+        modal.show();
+    };
+    //모달 닫는 함수
+    const closeModal = ()=>{
+        var modal = new Modal(document.querySelector("#exampleModal"));
+        modal.hide();
+    }
+
 
     return (
         <div className="container-fluid">
@@ -168,11 +200,10 @@ const Exam10_1 = ()=>{
 
                     <div className="row mt-4">
                         <div className="col">
-                            <input name="itemName" value={data.itemName} onChange={changeData}/>
-                            <input name="itemPrice" value={data.itemPrice} onChange={changeData}/>
-                            <input name="itemType" value={data.itemType} onChange={changeData}/>
-                            <button type="button" className="btn btn-primary"
-                                onClick={addItem}>추가</button>
+                            <button type="button" className="btn btn-primary" 
+                                onClick={openModal}>
+                                신규등록
+                            </button>
                         </div>
                     </div>
 
@@ -236,6 +267,32 @@ const Exam10_1 = ()=>{
 
                 </div>
             </div>
+
+            {/*  Modal  */}
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                        <input name="itemName" className="form-control"
+                            value={data.itemName} onChange={changeData} />
+                        <input name="itemPrice" className="form-control"
+                            value={data.itemPrice} onChange={changeData} />
+                        <input name="itemType" className="form-control"
+                            value={data.itemType} onChange={changeData} />
+                        <button className="btn btn-outline-warning" onClick={addItem}>추가</button>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save change</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };
