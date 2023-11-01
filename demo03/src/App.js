@@ -11,6 +11,7 @@ import Exam07 from './components/Exam07';
 import Exam08 from './components/Exam08';
 import Exam09 from './components/Exam09';
 import Exam10 from './components/Exam10';
+import Exam10_1 from './components/Exam10_1';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
       <Exam09/>
       <hr/>
       <Exam10/>
+      <hr/>
+      <Exam10_1/>
       <div className="my-5 py-5"></div>
     </>
   );
