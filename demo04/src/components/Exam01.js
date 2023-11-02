@@ -168,7 +168,7 @@ const Exam01 = ()=>{
 
                     <div className="row mt-4">
                         <div className="col">
-                            <button type="button" className="btn btn-primary" 
+                            <button type="button" className="btn btn-success" 
                                 onClick={openModal}>
                                 신규등록
                             </button>
