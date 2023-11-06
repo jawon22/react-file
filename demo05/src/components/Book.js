@@ -7,7 +7,7 @@ import {MdDelete} from "react-icons/md";
 
 const Book = (props) =>{
     const [bookList, setBookList] = useState([]);
-    useEffect(()=>{
+    const loadBook = ()=>{
         axios({
             url:"http://localhost:8080/book/",
             method:"get"
@@ -16,7 +16,25 @@ const Book = (props) =>{
             setBookList(response.data);
         })
         .catch(err=>{});
+    };
+
+    useEffect(()=>{
+        loadBook();
     },[])
+
+    const deleteByBook =(book)=>{
+        const choice = window.confirm("정말 삭제하나요?");
+        if(choice ===false) return;
+
+        axios({
+            url:`http://localhost:8080/book/${book.bookId}`,
+            method:"delete"
+        })
+        .then(response=>{
+            loadBook()
+        })
+        .catch(err=>{});
+    }
 
     return(
         <>
@@ -52,7 +70,7 @@ const Book = (props) =>{
                                     <td className="pc-only">{book.bookGenre}</td>
                                     <td>
                                         <FiEdit className="text-warning"/>
-                                        <MdDelete className="text-danger"/>
+                                        <MdDelete className="text-danger" onClick={e=>deleteByBook(book)}/>
                                     </td>
                                 </tr>
                             ))}
