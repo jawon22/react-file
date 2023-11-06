@@ -1,10 +1,62 @@
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Jumbotron from "./Jumbotron";
+import "./Book.css"
 
 const Book = (props) =>{
+    const [bookList, setBookList] = useState([]);
+    useEffect(()=>{
+        axios({
+            url:"http://localhost:8080/book/",
+            method:"get"
+        })
+        .then(response=>{
+            setBookList(response.data);
+        })
+        .catch(err=>{});
+    },[])
 
     return(
         <>
-            <h1>도서 관리화면</h1>
+            <Jumbotron title="도서관리" content="도서 CRUD 연습"/>
+
+            <div className="row mt-4">
+                <div className="col">
+
+                    <table className="table table-hover text-center">
+                        <thead className="table-info">
+                            <tr>
+                                <th className="pc-only">번호</th>
+                                <th>제목</th>
+                                <th>저자</th>
+                                <th className="pc-only">출간일</th>
+                                <th>가격</th>
+                                <th>출판사</th>
+                                <th className="pc-only">페이지수</th>
+                                <th className="pc-only">장르</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {bookList.map(book=>(
+                                <tr key={book.bookId}>
+                                    <td className="pc-only">{book.bookId}</td>
+                                    <td>{book.bookTitle}</td>
+                                    <td>{book.bookAuthor}</td>
+                                    <td className="pc-only">{book.bookPublicationDate}</td>
+                                    <td>{book.bookPrice}</td>
+                                    <td>{book.bookPublisher}</td>
+                                    <td className="pc-only">{book.bookPageCount}</td>
+                                    <td className="pc-only">{book.bookGenre}</td>
+                                    <td></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
         </>
     );
 };
