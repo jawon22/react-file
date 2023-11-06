@@ -27,7 +27,7 @@ const Book = (props) =>{
         if(choice ===false) return;
 
         axios({
-            url:`http://localhost:8080/book/${book.bookId}`,
+            url:`http://localhost:8080/book/${book.bookId}`, //백틱은 jsp에서 못쓴다~~
             method:"delete"
         })
         .then(response=>{
