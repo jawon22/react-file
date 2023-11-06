@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Jumbotron from "./Jumbotron";
 import "./Book.css"
+import {FiEdit} from "react-icons/fi";
+import {MdDelete} from "react-icons/md";
 
 const Book = (props) =>{
     const [bookList, setBookList] = useState([]);
@@ -48,7 +50,10 @@ const Book = (props) =>{
                                     <td>{book.bookPublisher}</td>
                                     <td className="pc-only">{book.bookPageCount}</td>
                                     <td className="pc-only">{book.bookGenre}</td>
-                                    <td></td>
+                                    <td>
+                                        <FiEdit className="text-warning"/>
+                                        <MdDelete className="text-danger"/>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
