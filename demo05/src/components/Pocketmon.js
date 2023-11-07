@@ -51,6 +51,7 @@ const Pocketmon = (props) =>{
     const closeModal = ()=>{
         const modal = Modal.getInstance(bsModal.current);
         modal.hide();
+        clearPocketmon();
     };
 
     //등록과 관련된 state
@@ -60,6 +61,25 @@ const Pocketmon = (props) =>{
             ...pocketmon,
             [e.target.name] : e.target.value
         });
+    };
+
+    //입력창 클리어
+    const clearPocketmon= ()=>{
+        setPocketmon({name:"",type:""});
+    };
+
+    //axios로 서버에 등록 요청을 보낸 뒤 등록이 성공하면 목록을 갱신하도록 처리
+    const savePocketmon = ()=>{
+        axios({
+            url:"http://localhost:8080/pocketmon/",
+            method:"post",
+            data:pocketmon
+        })
+        .then(response=>{ //성공시
+            loadPocketmon(); //목록갱신 후
+            closeModal(); //모달 닫기
+        })
+        .catch(err=>{});
     };
 
     return(
@@ -108,8 +128,9 @@ const Pocketmon = (props) =>{
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title fs-5" id="exampleModalLabel">포켓몬변경</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 className="modal-title fs-5">포켓몬변경</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    onClick={closeModal}></button>
                         </div>
                         <div className="modal-body">
                             {/* 수정화면 */}
@@ -132,7 +153,7 @@ const Pocketmon = (props) =>{
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-secondary" onClick={closeModal}>닫기</button>
-                            <button className="btn btn-success">저장</button>
+                            <button className="btn btn-success" onClick={savePocketmon}>저장</button>
                         </div>
                     </div>
                 </div>
