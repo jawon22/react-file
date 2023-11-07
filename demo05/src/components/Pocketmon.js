@@ -13,7 +13,7 @@ const Pocketmon = (props) =>{
     //서버에서 pocketmon list를 불러와서 state에 설정하는 코드
     const loadPocketmon = ()=>{
         axios({
-            url:"http://localhost:8080/pocketmon/", 
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/`, 
             method:"get"
         })
         .then(response=>{
@@ -34,7 +34,7 @@ const Pocketmon = (props) =>{
 
         //axios({옵션}).then(성공시 실행할 함수).catch(실패시 실행할 함수);
         axios({
-            url:`http://localhost:8080/pocketmon/${pocketmon.no}`, //백틱으로 헀을경우
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/${pocketmon.no}`, //백틱으로 헀을경우
             method:"delete" //DeleteMapping 
         })
         .then(response=>{
@@ -71,7 +71,7 @@ const Pocketmon = (props) =>{
     //axios로 서버에 등록 요청을 보낸 뒤 등록이 성공하면 목록을 갱신하도록 처리
     const savePocketmon = ()=>{
         axios({
-            url:"http://localhost:8080/pocketmon/",
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/`,
             method:"post",
             data:pocketmon
         })
@@ -97,7 +97,7 @@ const Pocketmon = (props) =>{
         //데이터를 넘기고 싶은 것을 고르고 싶을때 
         const {no, name, type} =pocketmon;
         axios({
-            url:`http://localhost:8080/pocketmon/${no}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/pocketmon/${no}`,
             method:"put",
             data:{
                 name:name,

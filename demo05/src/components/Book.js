@@ -11,7 +11,7 @@ const Book = (props) =>{
     const [bookList, setBookList] = useState([]);
     const loadBook = ()=>{
         axios({
-            url:"http://localhost:8080/book/",
+            url:`${process.env.REACT_APP_REST_API_URL}/book/`,
             method:"get"
         })
         .then(response=>{
@@ -23,7 +23,7 @@ const Book = (props) =>{
     //새로운 방식
     // const loadBook1 = async()=>{
     //     const response = await axios({
-    //         url:"http://localhost:8080/book/",
+    //         url:"${process.env.REACT_APP_REST_API_URL}/book/",
     //         method:"get"
     //     });
     //     setBookList(response.data)
@@ -38,7 +38,7 @@ const Book = (props) =>{
         if(choice ===false) return;
 
         axios({
-            url:`http://localhost:8080/book/${book.bookId}`, //백틱은 jsp에서 못쓴다~~
+            url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`, //백틱은 jsp에서 못쓴다~~
             method:"delete"
         })
         .then(response=>{
@@ -93,7 +93,7 @@ const Book = (props) =>{
     //도서 등록
     const saveBook = ()=>{
         axios({
-            url:"http://localhost:8080/book/",
+            url:`${process.env.REACT_APP_REST_API_URL}/book/`,
             method:"post",
             data:book
         })
@@ -109,7 +109,7 @@ const Book = (props) =>{
     // -비동기 작업을 동기화된 코드로 작성할 수 있다
     // const saveBook1 = async ()=>{
     //     const response = await axios({
-    //         url:"http://localhost:8080/book/",
+    //         url:"${process.env.REACT_APP_REST_API_URL}/book/",
     //         method:"post",
     //         data:book
     //     });
@@ -130,7 +130,7 @@ const Book = (props) =>{
     //     const {bookId, bookTitle, bookAuthor, bookPublicationDate, 
     //         bookPrice, bookPublisher, bookPageCount, bookGenre} = book;
     //     axios({
-    //         url:`http://localhost:8080/book/${bookId}`,
+    //         url:`${process.env.REACT_APP_REST_API_URL}/book/${bookId}`,
     //         method:"put",
     //         data:{
     //             bookTitle:bookTitle,
@@ -155,7 +155,7 @@ const Book = (props) =>{
     //     const copyBook = {...book};
     //     delete copyBook.bookId;
     //     axios({
-    //         url:`http://localhost:8080/book/${book.bookId}`,
+    //         url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
     //         method:"put",
     //         data:copyBook
     //     })
@@ -169,7 +169,7 @@ const Book = (props) =>{
         const copyBook = {...book};
         delete copyBook.bookId;
         const response = await axios({
-            url:`http://localhost:8080/book/${book.bookId}`,
+            url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
             method:"put",
             data:copyBook
         });
